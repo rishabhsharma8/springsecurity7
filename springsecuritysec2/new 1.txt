@@ -1,0 +1,2 @@
+/accounts/api/v1/details
+/balance/api/v1/details
