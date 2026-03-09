@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .build();
 
         UserDetails normalUser = User.withUsername("mohit")
-                .password("{bcrypt}$2a$12$2acCjdotaMutD6R4kf9xfevlrFWsCkW9jaWRHP2urwFW2KOKqgUY2")
+                .password("{bcrypt}$2a$12$2acCjdotaMutD6R4kf9xfevlrFWsCkW9jaWRHP2urwFW2KOKqgUY2")  //mohit
                 .authorities("read")
                 .build();
 
