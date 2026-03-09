@@ -1,4 +1,4 @@
-package com.springsec2.config;
+package com.springsec3.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
