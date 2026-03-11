@@ -11,8 +11,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.password.HaveIBeenPwnedRestApiPasswordChecker;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfig {
@@ -26,19 +29,25 @@ public class SecurityConfig {
         return http.build();
     }
 
+//    @Bean
+//    public UserDetailsService userDetailsService(){
+//        UserDetails adminUser = User.withUsername("rishabh")
+//                .password("{noop}rishabh12345")
+//                .authorities("read","write")
+//                .build();
+//
+//        UserDetails normalUser = User.withUsername("mohit")
+//                .password("{bcrypt}$2a$12$2acCjdotaMutD6R4kf9xfevlrFWsCkW9jaWRHP2urwFW2KOKqgUY2")  //mohit
+//                .authorities("read")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(adminUser,normalUser);
+//    }
+
     @Bean
-    public UserDetailsService userDetailsService(){
-        UserDetails adminUser = User.withUsername("rishabh")
-                .password("{noop}rishabh12345")
-                .authorities("read","write")
-                .build();
-
-        UserDetails normalUser = User.withUsername("mohit")
-                .password("{bcrypt}$2a$12$2acCjdotaMutD6R4kf9xfevlrFWsCkW9jaWRHP2urwFW2KOKqgUY2")  //mohit
-                .authorities("read")
-                .build();
-
-        return new InMemoryUserDetailsManager(adminUser,normalUser);
+    public UserDetailsService userDetailsService(DataSource dataSource)
+    {
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     @Bean

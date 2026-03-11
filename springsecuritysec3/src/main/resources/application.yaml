@@ -5,6 +5,15 @@ spring:
 #    user:
 #      name: ${SPRING_SECURITY_USER_NAME:admin}
 #      password: ${SPRING_SECURITY_USER_PASSWORD:admin}
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/bankdb}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 server:
   port: ${SERVER_PORT:8080}
 logging:
