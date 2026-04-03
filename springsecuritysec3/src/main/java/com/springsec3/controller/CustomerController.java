@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(value = "/customer/api/v1")
 @RequiredArgsConstructor
@@ -30,6 +32,11 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The porvided password is compromised, please provide a strong password.");
         }
 
+        Optional<Customer> existingCustomer = customerRepository.findByEmail(customer.getEmail());
+        if(existingCustomer.isPresent())
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer with email " + customer.getEmail() + " already exists.");
+        }
 
         try{
             String hashedPassword = passwordEncoder.encode(customer.getPassword());
