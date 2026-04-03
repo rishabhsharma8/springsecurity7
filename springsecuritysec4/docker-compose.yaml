@@ -1,0 +1,11 @@
+services:
+  spring--security-app:
+    container_name: springsecurityapp
+    image: mysql:latest
+    ports:
+        - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bankdb
+      MYSQL_USER: rishabh
+      MYSQL_PASSWORD: rishabh
