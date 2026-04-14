@@ -15,11 +15,8 @@ spring:
       hibernate:
         format_sql: true
   config:
-    import:
-      - application-prod.yaml
-      - application-dev.yaml
-  profiles:
-    active: ${SPRING_PROFILE:dev}
+    activate:
+      on-profile: prod
 server:
   port: ${SERVER_PORT:8080}
 logging:
