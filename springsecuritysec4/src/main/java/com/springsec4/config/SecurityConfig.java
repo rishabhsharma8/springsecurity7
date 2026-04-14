@@ -15,6 +15,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain customSecurityFilterChain(HttpSecurity http) {
+        http.redirectToHttps(Customizer.withDefaults()); // only allow https
         http.authorizeHttpRequests(r -> r.requestMatchers("/balance/**","/cards/**","/loans/api/v1/details","/accounts/**").authenticated()
                 .requestMatchers("/contacts/**","/notices/**","/customer/api/v1/register").permitAll());
         http.formLogin(Customizer.withDefaults());
